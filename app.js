@@ -1,4 +1,6 @@
-var express = require("express")
+const express = require("express")
+const token = require("./token");
+
 
 var app = express()
 app.get('/',function (req,res) {
@@ -15,8 +17,11 @@ app.post('/logn',function (req,res) {
     req.on('end', function() {
     
         console.log(req.rawBody)
-        res.send("11")
+        let jwt = new token()
         
+        res.send(jwt.generateToken("123"))
+      
+
     }); 
     
 })
